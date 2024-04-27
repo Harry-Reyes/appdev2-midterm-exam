@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('products', ProductController::class);
+
+Route::post('products/upload/local', [ProductController::class, 'uploadImageLocal'])->name('upload.local');
+
+Route::post('products/upload/public', [ProductController::class, 'uploadImagePublic'])->name('upload.public');

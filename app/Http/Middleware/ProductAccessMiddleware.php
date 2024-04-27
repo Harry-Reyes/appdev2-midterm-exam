@@ -19,13 +19,13 @@ class ProductAccessMiddleware
         {
             return response()->json([
                 'message'=> 'Token is missing'
-            ]);
+            ], 401);
         }
         else if ($request->input('token') !== env('ACCESS_TOKEN'))
         {
             return response()->json([
                 'message'=> 'Token is invalid'
-            ]);
+            ], 401);
         }
         return $next($request);
     }
